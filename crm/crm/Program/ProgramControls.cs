@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crm.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace crm.Program
         public ProgramControls()
         {
             _appFactory = AppFactory.GetInstance();
+            _dBMaster = _appFactory.GetClass<DBMaster>();
         }
 
         #endregion
@@ -22,6 +24,7 @@ namespace crm.Program
         #region Fields
 
         private readonly AppFactory _appFactory;
+        private readonly DBMaster _dBMaster;
 
         #endregion
 
@@ -31,6 +34,8 @@ namespace crm.Program
         {
             return new Result<bool>(() =>
             {
+                _dBMaster.Connection("", "", "", "");
+
 
                 return true;
             });

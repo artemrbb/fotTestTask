@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="DB\DBMaster.cs" />
     <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Models\LegalPersonModel.cs" />
     <Compile Include="Models\NaturalPersonModel.cs" />
