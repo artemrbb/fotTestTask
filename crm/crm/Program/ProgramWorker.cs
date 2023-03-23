@@ -35,7 +35,13 @@ namespace crm.Program
         {
             return new Result<bool>(() =>
             {
-                _programControls.Initialize();
+                var resInitControls = _programControls.Initialize();
+                if (!resInitControls.IsOk) 
+                {
+                    ViewConsole(resInitControls.ErrorMessage);
+                    Console.ReadLine();
+                    return false;
+                }
 
                 ViewConsole("Добро пожаловать, воспользуйтесь командой /help");
 

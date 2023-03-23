@@ -49,3 +49,5 @@ C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.csproj.CoreCo
 C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.csproj.CopyComplete
 C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.exe
 C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.pdb
+C:\Users\pc\source\repos\fotTestTask\crm\crm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pc\source\repos\fotTestTask\crm\crm\bin\Debug\Newtonsoft.Json.xml

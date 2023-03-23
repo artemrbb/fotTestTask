@@ -10,7 +10,7 @@ namespace crm.Models
     {
         #region Constructor
 
-        public ContractModel(LegalPersonModel legalPersonModel, NaturalPersonModel naturalPersonModel, string summContract, string status, string dateOfSingning)
+        public ContractModel(string legalPersonModel, string naturalPersonModel, string summContract, string status, DateTime dateOfSingning)
         {
             _legalPersonModel = legalPersonModel;
             _naturalPersonModel = naturalPersonModel;
@@ -23,21 +23,21 @@ namespace crm.Models
 
         #region Fields
 
-        private LegalPersonModel _legalPersonModel;
-        private NaturalPersonModel _naturalPersonModel;
+        private string _legalPersonModel;
+        private string _naturalPersonModel;
         private string _summContract;
         private string _status;
-        private string _dateOfSingning;
+        private DateTime _dateOfSingning;
 
         #endregion
 
         #region Properties
 
-        public LegalPersonModel LegalPersonModel { get => _legalPersonModel; set => _legalPersonModel = value; }
-        public NaturalPersonModel NaturalPersonModel { get => _naturalPersonModel; set => _naturalPersonModel = value; }
+        public string LegalPersonModel { get => _legalPersonModel; set => _legalPersonModel = value; }
+        public string NaturalPersonModel { get => _naturalPersonModel; set => _naturalPersonModel = value; }
         public string SummContract { get => _summContract; set => _summContract = value; }
         public string Status { get => _status; set => _status = value; }
-        public string DateOfSingning { get => _dateOfSingning; set => _dateOfSingning = value; }
+        public DateTime DateOfSingning { get => _dateOfSingning; set => _dateOfSingning = value; }
 
         #endregion
     }

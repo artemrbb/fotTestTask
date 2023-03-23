@@ -1,0 +1,5 @@
+22.03.2023 19:28:37	<Connection>b__0	ERROR	42P01: отношение "legalpersontable" не существует
+
+POSITION: 15
+22.03.2023 20:06:09	<Connection>b__0	ERROR	42883: для типа aclitem нет функции вывода двоичных данных
+22.03.2023 23:29:05	<GetSumInOneYear>b__6_0	ERROR	Connection property has not been initialized.

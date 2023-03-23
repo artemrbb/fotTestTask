@@ -1,6 +1,7 @@
 ﻿using crm.DB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,9 @@ namespace crm.Program
         {
             return new Result<bool>(() =>
             {
-                _dBMaster.Connection("", "", "", "");
+                var resConnectionDB = _dBMaster.Connection("localhost", "postgres", "linkoln", "fortest");
+                if (!resConnectionDB.IsOk)
+                    throw new Exception($"При подключении к БД, произошла ошибка: {resConnectionDB}");
 
 
                 return true;
@@ -50,23 +53,49 @@ namespace crm.Program
                     return "Команда пуста. Воспользуйтесь командой /help";
                 else if (command == "/inoneyear") // 1.	Вывести сумму всех заключенных договоров за текущий год.
                 {
+                    var result = _dBMaster.GetSumInOneYear();
+                    if (!result.IsOk)
+                        throw new Exception($"При запросе, произошла ошибка {result.ErrorMessage}");
 
+                    return result.ResultObject.ToString();
                 }
                 else if (command == "/fromrus") // 2.	Вывести сумму заключенных договоров по каждому контрагенту из России.
                 {
+                    var result = _dBMaster.GetSumFromRus();
+                    if (!result.IsOk)
+                        throw new Exception($"При запросе, произошла ошибка {result.ErrorMessage}");
 
+                    return result.ResultObject.ToString();
                 }
                 else if (command == "/emails")// вывести email физ лиц заключивших договор за последние 30 дней на сумму больше 40000 
                 {
+                    var result = _dBMaster.GetListEmail();
+                    if (!result.IsOk)
+                        throw new Exception($"При запросе, произошла ошибка {result.ErrorMessage}");
 
+                    return result.ResultObject.ToString();
                 }
                 else if (command == "/changestatus") // 4.	Изменить статус договора на "Расторгнут" для физических лиц, у которых есть действующий договор, и возраст которых старше 60 лет включительно.
                 {
+                    var result = _dBMaster.ChangeStatus();
+                    if (!result.IsOk)
+                        throw new Exception($"При запросе, произошла ошибка {result.ErrorMessage}");
 
+                    return "Изменения внесены!";
                 }
                 else if (command == "/createreport") // 5.	Создать отчет (текстовый файл, например, в формате xml, xlsx, json) содержащий ФИО, e-mail, моб. телефон, дату рождения физ. лиц, у которых есть действующие договора по компаниям, расположенных в городе Москва. 
                 {
+                    var result = _dBMaster.UploadingDataForReport();
+                    if (!result.IsOk)
+                        throw new Exception($"При запросе, произошла ошибка {result.ErrorMessage}");
 
+                    using (StreamWriter sw = new StreamWriter("C:\\Users\\pc\\Downloads\\Report.txt", true, Encoding.ASCII)) 
+                    {
+                        foreach (var str in result.ResultObject) 
+                        {
+                            sw.WriteLine(str);
+                        }
+                    }
                 }
                 else if (command == "/help")
                 {
