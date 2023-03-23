@@ -1,10 +1,13 @@
-﻿using crm.Models;
+﻿using crm.ConfigurationManager;
+using crm.Models;
 using Newtonsoft.Json.Linq;
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using UltimateCore.AppManagement;
 using UltimateCore.LRI;
@@ -38,13 +41,21 @@ namespace crm.DB
 
         #region Methods 
 
-        public Result<bool> Connection(string host, string username, string password, string database) 
+        public Result<bool> Connection() 
         {
             return new Result<bool>(() =>
             {
+                var resReadConfig = ReadConfiguration();
+                if (!resReadConfig.IsOk)
+                    throw new Exception($"При подключении, произошла ошибка: {resReadConfig.ErrorMessage}");
+                ;
                 var resConnection = new UltimateCore.LRI.Result<bool>(() =>
                 {
-                    _npgsqlConnection = new NpgsqlConnection($"Host={host};Username={username};Password={password};Database={database}"); // $"Host={host};Username={username};Password={password};Database={database}"
+                    _npgsqlConnection = new NpgsqlConnection($"" +
+                        $"Host={resReadConfig.ResultObject.Host};" +
+                        $"Username={resReadConfig.ResultObject.Username};" +
+                        $"Password={resReadConfig.ResultObject.Password};" +
+                        $"Database={resReadConfig.ResultObject.Database}"); // $"Host={host};Username={username};Password={password};Database={database}"
                     _npgsqlConnection.Open();
                     return true;
                 });
@@ -82,6 +93,21 @@ namespace crm.DB
 
                 return true;
             });
+        }
+
+        private Result<Configuration> ReadConfiguration() 
+        {
+            var resReadConfig = new Result<Configuration>(() =>
+            {
+                using (FileStream fs = new FileStream("Config.json", FileMode.OpenOrCreate))
+                {
+                    return JsonSerializer.Deserialize<Configuration>(fs);
+                }
+            });
+            if (!resReadConfig.IsOk)
+                throw new Exception("При считывании файла конфигурации произошла ошибка!");
+
+            return resReadConfig;
         }
 
         public Result<int> GetSumInOneYear() 
@@ -195,11 +221,11 @@ namespace crm.DB
             });
         }
 
-        public Result<List<string>> UploadingDataForReport()
+        public Result<List<NaturalPersonModel>> UploadingDataForReport()
         {
-            return new Result<List<string>>(() =>
+            return new Result<List<NaturalPersonModel>>(() =>
             {
-                List<string> report = new List<string>();
+                List<NaturalPersonModel> persons = new List<NaturalPersonModel>();
 
                 var resCommandReport = new Result<NpgsqlCommand>(() =>
                 {
@@ -216,19 +242,15 @@ namespace crm.DB
                 while (resReadReport.ResultObject.Read()) 
                 {
                     string rep = string.Empty;
-                    var resReport = resReadReport.ResultObject.GetFieldValue<object>(0) as Array;
-                    foreach (var obj in resReport) 
-                    {
-                        rep += obj.ToString() + " | ";
-                    }
-                    rep += ";";
-                    report.Add(rep);
+                    var resReport = resReadReport.ResultObject.GetFieldValue<object[]>(0).Cast<string>().ToList();
+                    persons.Add(new NaturalPersonModel(resReport[0], resReport[1], resReport[2], resReport[3], resReport[4], resReport[5]));
+                    ;
                 }
                 ;
                 _npgsqlConnection.Close();
                 _npgsqlConnection.Open();
 
-                return report;
+                return persons;
             });
         }
 

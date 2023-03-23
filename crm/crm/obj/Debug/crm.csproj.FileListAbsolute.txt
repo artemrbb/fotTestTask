@@ -51,3 +51,5 @@ C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.exe
 C:\Users\Сенин\Source\Repos\fotTestTask\crm\crm\obj\Debug\crm.pdb
 C:\Users\pc\source\repos\fotTestTask\crm\crm\bin\Debug\Newtonsoft.Json.dll
 C:\Users\pc\source\repos\fotTestTask\crm\crm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pc\source\repos\fotTestTask\crm\crm\obj\Debug\crm.csproj.ResolveComReference.cache
+C:\Users\pc\source\repos\fotTestTask\crm\crm\bin\Debug\Config.json

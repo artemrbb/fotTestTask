@@ -69,7 +69,7 @@ namespace crm.Program
             {
                 var resInfo = _programControls.GetInfofromDB(Console.ReadLine());
                 if (!resInfo.IsOk)
-                    ViewConsole("Произошла ошибка!");
+                    ViewConsole($"Произошла ошибка: {resInfo.ErrorMessage}");
 
                 ViewConsole(resInfo.ResultObject);
                 return true;

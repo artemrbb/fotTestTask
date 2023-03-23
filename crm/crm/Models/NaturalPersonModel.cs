@@ -10,17 +10,11 @@ namespace crm.Models
     {
         #region Constructor
 
-        public NaturalPersonModel(string name, string surname, string patronymic, string gender, string age, string placeOfWork, string contry, string city, string address, string email, string phoneNumber, string dateOfBirth)
+        public NaturalPersonModel(string name, string surname, string patronymic, string email, string phoneNumber, string dateOfBirth)
         {
             _name = name;
             _surname = surname;
             _patronymic = patronymic;
-            _gender = gender;
-            _age = age;
-            _placeOfWork = placeOfWork;
-            _contry = contry;
-            _city = city;
-            _address = address;
             _email = email;
             _phoneNumber = phoneNumber;
             _dateOfBirth = dateOfBirth;

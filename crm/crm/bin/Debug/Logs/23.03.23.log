@@ -1,0 +1,26 @@
+23.03.2023 21:35:11	GetSumInOneYear	ERROR	Column 'sum' is null.
+23.03.2023 21:35:18	GetInfofromDB	ERROR	При запросе, произошла ошибка Column 'sum' is null.
+23.03.2023 21:36:18	GetSumInOneYear	ERROR	Column 'sum' is null.
+23.03.2023 21:36:19	GetInfofromDB	ERROR	При запросе, произошла ошибка Column 'sum' is null.
+23.03.2023 21:36:39	<GetSumInOneYear>b__7_0	ERROR	A command is already in progress: select SUM(summ_contract) from Contracts WHERE date_part('year', date_of_singning) = date_part('year', CURRENT_DATE) and status = 'complite'
+23.03.2023 21:36:45	GetSumInOneYear	ERROR	Ссылка на объект не указывает на экземпляр объекта.
+23.03.2023 21:36:59	GetInfofromDB	ERROR	При запросе, произошла ошибка Ссылка на объект не указывает на экземпляр объекта.
+23.03.2023 21:37:30	GetSumInOneYear	ERROR	Column 'sum' is null.
+23.03.2023 21:37:30	GetInfofromDB	ERROR	При запросе, произошла ошибка Column 'sum' is null.
+23.03.2023 21:39:10	GetSumInOneYear	ERROR	Column 'sum' is null.
+23.03.2023 21:39:14	GetInfofromDB	ERROR	При запросе, произошла ошибка Column 'sum' is null.
+23.03.2023 21:40:36	<Connection>b__5_0	ERROR	Failed to connect to 0.0.0.1:5432
+23.03.2023 21:40:38	Connection	ERROR	При подключении произошла ошибка: Failed to connect to 0.0.0.1:5432
+23.03.2023 21:40:40	Initialize	ERROR	При подключении к БД, произошла ошибка: UltimateCore.LRI.Result`1[System.Boolean]
+23.03.2023 21:41:08	<Connection>b__5_0	ERROR	Failed to connect to 0.0.0.1:5432
+23.03.2023 21:41:11	Connection	ERROR	При подключении произошла ошибка: Failed to connect to 0.0.0.1:5432
+23.03.2023 21:41:12	Initialize	ERROR	При подключении к БД, произошла ошибка: При подключении произошла ошибка: Failed to connect to 0.0.0.1:5432
+23.03.2023 22:53:44	GetSumInOneYear	ERROR	Column 'sum' is null.
+23.03.2023 22:53:50	GetInfofromDB	ERROR	При запросе, произошла ошибка Column 'sum' is null.
+23.03.2023 22:55:20	<Connection>b__5_0	ERROR	Host can't be null
+23.03.2023 22:55:20	Connection	ERROR	При подключении произошла ошибка: Host can't be null
+23.03.2023 22:55:21	Initialize	ERROR	При подключении к БД, произошла ошибка: При подключении произошла ошибка: Host can't be null
+23.03.2023 22:55:29	<Connection>b__5_0	ERROR	Host can't be null
+23.03.2023 22:55:41	<Connection>b__5_0	ERROR	Host can't be null
+23.03.2023 22:55:41	Connection	ERROR	При подключении произошла ошибка: Host can't be null
+23.03.2023 22:55:41	Initialize	ERROR	При подключении к БД, произошла ошибка: При подключении произошла ошибка: Host can't be null
